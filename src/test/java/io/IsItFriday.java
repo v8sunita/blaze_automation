@@ -21,7 +21,7 @@ public class IsItFriday {
 
     @When("I ask whether it's Friday yet")
     public void i_ask_whether_it_s_Friday_yet() {
-        actualAnswer = IsItFriday.isItFriday(today);
+        actualAnswer = isItFriday(today);
     }
 
     @Then("I should be told {string}")
