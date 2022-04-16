@@ -1,4 +1,4 @@
-package io;
+package io.skeleton;
 
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
