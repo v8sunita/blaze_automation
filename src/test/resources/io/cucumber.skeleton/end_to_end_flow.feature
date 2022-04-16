@@ -8,7 +8,9 @@ Feature: End To End Testing
     And click add to cart
     Then popup appear user click on okay
     Then user click on cart
-    Then place order
+    Then clicks on place order
+    Then fills his details
+    Then clicks on purchase
 
 
 

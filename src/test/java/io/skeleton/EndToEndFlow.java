@@ -6,7 +6,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
-import org.openqa.selenium.*;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -38,7 +41,7 @@ public class EndToEndFlow {
 
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"tbodyid\"]")))); // wait for visibility Of product list
 
-        List<WebElement> products =  driver.findElement(By.xpath("//*[@id=\"tbodyid\"]")).findElements(By.xpath("//*")); // get list of product
+        List<WebElement> products = driver.findElement(By.xpath("//*[@id=\"tbodyid\"]")).findElements(By.xpath("//*")); // get list of product
         Assert.assertNotNull(products); // check list is not null
         Assert.assertFalse(products.isEmpty()); // check list is not empty
 
@@ -58,11 +61,11 @@ public class EndToEndFlow {
 
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"tbodyid\"]/h2"))); // wait for element to be clickable
 
-        Assert.assertEquals( driver.findElement(By.xpath("//*[@id=\"tbodyid\"]/h2")).getText(),"Samsung galaxy s6"); // verify  product name
+        Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"tbodyid\"]/h2")).getText(), "Samsung galaxy s6"); // verify  product name
 
-        Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"tbodyid\"]/h3")).getText(),"$360 *includes tax"); // verify product price
+        Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"tbodyid\"]/h3")).getText(), "$360 *includes tax"); // verify product price
 
-        Assert.assertEquals( driver.findElement(By.xpath("//*[@id=\"more-information\"]/p")).getText(), "The Samsung Galaxy S6 is powered by 1.5GHz octa-core Samsung Exynos " +
+        Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"more-information\"]/p")).getText(), "The Samsung Galaxy S6 is powered by 1.5GHz octa-core Samsung Exynos " +
                 "7420 processor and it comes with 3GB of RAM. The phone packs 32GB of internal storage cannot be expanded.");  // verify product description
 
 
@@ -77,6 +80,7 @@ public class EndToEndFlow {
 
     @Then("popup appear user click on okay")
     public void popup_appear_user_click_on_okay() {
+
         wait.until(ExpectedConditions.alertIsPresent()); // wait until pop present
         Alert alertOK = driver.switchTo().alert(); // switch to pop up
         alertOK.accept(); // click on pop up
@@ -85,15 +89,35 @@ public class EndToEndFlow {
 
     @Then("user click on cart")
     public void user_click_on_cart() {
+
         driver.findElement(By.xpath("//*[@id=\"cartur\"]")).click(); // click on cart
-
     }
 
-    @Then("place order")
+    @Then("clicks on place order")
     public void place_order() {
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/button")).click(); // then place order
 
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/button")).click(); // then place order
     }
 
 
+    @Then("fills his details")
+    public void fillsHisDetails() {
+
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"orderModalLabel\"]"))));
+
+        driver.findElement(By.xpath("//*[@id=\"name\"]")).sendKeys("Test is fun game");  // To send name input values
+        driver.findElement(By.xpath("//*[@id=\"country\"]")).sendKeys("India");  // To send name input values
+        driver.findElement(By.xpath("//*[@id=\"city\"]")).sendKeys("Pune");   // To send city input values
+        driver.findElement(By.xpath("//*[@id=\"card\"]")).sendKeys("1234567890");  // To send card input values
+        driver.findElement(By.xpath("//*[@id=\"month\"]")).sendKeys("12");   // To send month input values
+        driver.findElement(By.xpath("//*[@id=\"year\"]")).sendKeys("2027");   // To send year input values
+
+    }
+
+    @Then("clicks on purchase")
+    public void clicksOnPurchase() {
+
+        driver.findElement(By.xpath("//*[@id=\"orderModal\"]/div/div/div[3]/button[2]")).click();  // then click on purchase
+
+    }
 }
