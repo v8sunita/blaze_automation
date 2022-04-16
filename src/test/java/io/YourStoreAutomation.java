@@ -1,9 +1,11 @@
 package io;
 
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Ignore;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,6 +25,16 @@ public class YourStoreAutomation {
     @After()
     public void closeBrowser() {
         driver.quit();
+    }
+
+    @Before()
+    public void beforeClass()
+    {}
+
+    @Ignore()
+    public void inogre()
+    {
+
     }
 
 
