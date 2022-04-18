@@ -103,7 +103,7 @@ public class EndToEndFlow {
     @Then("fills his details")
     public void fillsHisDetails() {
 
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"orderModalLabel\"]"))));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"orderModalLabel\"]"))));  // wait until order Modal visible
 
         driver.findElement(By.xpath("//*[@id=\"name\"]")).sendKeys("Test is fun game");  // To send name input values
         driver.findElement(By.xpath("//*[@id=\"country\"]")).sendKeys("India");  // To send name input values
